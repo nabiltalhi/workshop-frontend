@@ -1,0 +1,18 @@
+<form>
+  <md-input-container>
+    <input mdInput placeholder="Vluchtnaam" name="flightName"
+           value="" #flightName>
+  </md-input-container>
+  <md-input-container>
+    <input mdInput [mdDatepicker]="picker" placeholder="Kies een datum">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+  </md-input-container>
+  <md-datepicker #picker></md-datepicker>
+  <button md-button (click)="onClick()">Zoeken!</button>
+</form>
+<md-list>
+  <md-list-item *ngFor="let flight of flights | flightPipe: flightName.value">
+    <h4 md-line>{{flight.flightName}}</h4>
+    <p md-line>{{flight.scheduleDate}} from terminal {{flight.terminal}}</p>
+  </md-list-item>
+</md-list>
